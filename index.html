@@ -12,6 +12,18 @@
             background-color: #17202A;
             color: white;
         }
+        .logo {
+            position: absolute;
+            top: 10px;
+            width: 100px; /* Adjust size as needed */
+            height: auto;
+        }
+        .logo-left {
+            left: 10px;
+        }
+        .logo-right {
+            right: 10px;
+        }
         h1 {
             color: #ffffff;
         }
@@ -39,7 +51,12 @@
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
         }
-   
+    </style>
+</head>
+<body>
+ <!-- Logos -->
+    <img src="DCEMS-Logo.jpg" alt="Left Logo" class="logo logo-left">
+    <img src="DCEMS-Logo.jpg" alt="Right Logo" class="logo logo-right">
     
 <h1>Dorchester County EMS KPI Dashboards</h1>
     
@@ -51,25 +68,20 @@
             <option value="dashboard3">Incident Reports</option>
         </select>
     </div>
-
     <div id="passwordContainer" style="display:none;">
         <input type="password" id="dashboardPassword" placeholder="Enter Password">
         <button onclick="validatePassword()">Submit</button>
     </div>
-
     <iframe id="dashboardFrame"></iframe>
-
     <script>
         var urls = {
             "dashboard1": "https://app.powerbigov.us/view?r=eyJrIjoiMzc5MzI4YWUtMmRhYS00MzhjLTk1ZjYtY2FkZTkyMjc3MWMxIiwidCI6ImFkMWM0MmQ0LThjZWUtNGUwNS04YTNiLTA3ZWQ2OTY4ZmI2YyJ9",
             "dashboard2": "https://app.powerbigov.us/view?r=Operational KPIs",
             "dashboard3": "https://app.powerbigov.us/view?r=Mission Lifeline"
         };
-
         var passwords = {
             "dashboard1": "securepass123" // Change this to your desired password
         };
-
         function checkPassword() {
             var selectedValue = document.getElementById("dashboardSelect").value;
             var frame = document.getElementById("dashboardFrame");
@@ -86,12 +98,10 @@
                 passwordContainer.style.display = "none";
             }
         }
-
         function validatePassword() {
             var selectedValue = document.getElementById("dashboardSelect").value;
             var enteredPassword = document.getElementById("dashboardPassword").value;
             var frame = document.getElementById("dashboardFrame");
-
             if (enteredPassword === passwords[selectedValue]) {
                 frame.src = urls[selectedValue];
                 frame.style.display = "block";
@@ -101,6 +111,5 @@
             }
         }
     </script>
-
 </body>
 </html>
