@@ -12,21 +12,29 @@
             background-color: #17202A;
             color: white;
         }
+
+        /* Header Container to hold Logo and Title */
+        .header-container {
+            display: flex;
+            flex-direction: column; /* Stack logo and title vertically */
+            align-items: center;   /* Center items horizontally */
+            justify-content: center; /*Center items vertically*/
+            padding: 10px;
+        }
+
         .logo {
-            position: absolute;
-            top: 10px;
-            width: 100px; /* Adjust size as needed */
+            width: 80px; /* Adjust size as needed - smaller for mobile */
             height: auto;
+            margin-bottom: 10px; /* Add spacing between logo and title */
         }
-        .logo-left {
-            left: 10px;
-        }
-        .logo-right {
-            right: 10px;
-        }
+
+
         h1 {
             color: #ffffff;
+            margin: 0;
+            font-size: 1.5em; /* Adjust font size for responsiveness */
         }
+
         .dropdown {
             margin-bottom: 20px;
         }
@@ -51,14 +59,23 @@
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
         }
+
+        /* Media query for smaller screens */
+        @media (max-width: 600px) {
+            .logo {
+                width: 60px; /* Further reduce logo size on very small screens */
+            }
+            h1 {
+                font-size: 1.2em; /* Reduce font size on smaller screens */
+            }
+        }
     </style>
 </head>
 <body>
- <!-- Logos -->
-    <img src="DCEMS-Logo.jpg" alt="Left Logo" class="logo logo-left">
-    <img src="DCEMS-Logo.jpg" alt="Right Logo" class="logo logo-right">
-    
-<h1>Dorchester County EMS KPI Dashboards</h1>
+    <div class="header-container">
+        <img src="DCEMS-Logo.jpg" alt="Logo" class="logo">
+        <h1>Dorchester County EMS KPI Dashboards</h1>
+    </div>
     
     <div class="dropdown">
         <select id="dashboardSelect" onchange="checkPassword()">
