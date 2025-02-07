@@ -87,8 +87,8 @@
         <select id="dashboardSelect" onchange="checkPassword()">
             <option value="" selected disabled>Select a Dashboard</option>
             <option value="dashboard1">2024 QA Audit (Protected)</option>
-            <option value="dashboard2">Employee Salaries</option>
-            <option value="dashboard3">Incident Reports</option>
+            <option value="dashboard2">Mission Lifeline</option>
+            <option value="dashboard3">Employee Salaries</option>
         </select>
     </div>
     
@@ -106,7 +106,7 @@
     <script>
         var urls = {
             "dashboard1": "https://app.powerbigov.us/view?r=eyJrIjoiMzc5MzI4YWUtMmRhYS00MzhjLTk1ZjYtY2FkZTkyMjc3MWMxIiwidCI6ImFkMWM0MmQ0LThjZWUtNGUwNS04YTNiLTA3ZWQ2OTY4ZmI2YyJ9",
-            "dashboard3": "https://app.powerbigov.us/view?r=Mission Lifeline"
+            "dashboard2": "https://app.powerbigov.us/view?r=Mission Lifeline"
         };
 
         var passwords = {
@@ -126,7 +126,7 @@
             } else {
                 passwordContainer.style.display = "none";
 
-                if (selectedValue === "dashboard2") {
+                if (selectedValue === "dashboard3") {
                     frame.style.display = "none";
                     video.style.display = "block";
                     video.play();
