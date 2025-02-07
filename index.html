@@ -28,7 +28,6 @@
             margin-bottom: 10px; /* Add spacing between logo and title */
         }
 
-
         h1 {
             color: #ffffff;
             margin: 0;
@@ -38,6 +37,7 @@
         .dropdown {
             margin-bottom: 20px;
         }
+        
         select, input, button {
             padding: 10px;
             font-size: 16px;
@@ -47,16 +47,18 @@
             border-radius: 5px;
             margin: 5px;
         }
+
         select:hover, button:hover {
             background-color: #444;
         }
-        iframe {
-            width: 95%; /* Default width */
-            max-width: 1200px; /* Or any desired maximum width */
+
+        iframe, video {
+            width: 95%;
+            max-width: 1200px;
             height: 700px;
             border: none;
             display: none;
-            margin: 20px auto; /* Center horizontally */
+            margin: 20px auto;
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
         }
@@ -64,13 +66,13 @@
         /* Media query for smaller screens */
         @media (max-width: 600px) {
             .logo {
-                width: 60px; /* Further reduce logo size on very small screens */
+                width: 60px;
             }
             h1 {
-                font-size: 1.2em; /* Reduce font size on smaller screens */
+                font-size: 1.2em;
             }
-            iframe {
-                width: 100%;  /* Take full width on smaller screens */
+            iframe, video {
+                width: 100%;
             }
         }
     </style>
@@ -85,44 +87,62 @@
         <select id="dashboardSelect" onchange="checkPassword()">
             <option value="" selected disabled>Select a Dashboard</option>
             <option value="dashboard1">2024 QA Audit (Protected)</option>
-            <option value="dashboard2">Response Time Analysis</option>
+            <option value="dashboard2">Employee Salaries</option>
             <option value="dashboard3">Incident Reports</option>
         </select>
     </div>
+    
     <div id="passwordContainer" style="display:none;">
         <input type="password" id="dashboardPassword" placeholder="Enter Password">
         <button onclick="validatePassword()">Submit</button>
     </div>
+
     <iframe id="dashboardFrame"></iframe>
+    <video id="dashboardVideo" controls autoplay>
+        <source src="https://shattereddisk.github.io/rickroll/rickroll.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
     <script>
         var urls = {
             "dashboard1": "https://app.powerbigov.us/view?r=eyJrIjoiMzc5MzI4YWUtMmRhYS00MzhjLTk1ZjYtY2FkZTkyMjc3MWMxIiwidCI6ImFkMWM0MmQ0LThjZWUtNGUwNS04YTNiLTA3ZWQ2OTY4ZmI2YyJ9",
-            "dashboard2": "https://shattereddisk.github.io/rickroll/rickroll.mp4",
             "dashboard3": "https://app.powerbigov.us/view?r=Mission Lifeline"
         };
+
         var passwords = {
-            "dashboard1": "Dorchester1234" // Change this to your desired password
+            "dashboard1": "securepass123"
         };
+
         function checkPassword() {
             var selectedValue = document.getElementById("dashboardSelect").value;
             var frame = document.getElementById("dashboardFrame");
+            var video = document.getElementById("dashboardVideo");
             var passwordContainer = document.getElementById("passwordContainer");
-            
+
             if (passwords[selectedValue]) {
-                // If the selected dashboard is protected, show password input
                 passwordContainer.style.display = "block";
                 frame.style.display = "none";
+                video.style.display = "none";
             } else {
-                // If not protected, load the dashboard directly
-                frame.src = urls[selectedValue];
-                frame.style.display = "block";
                 passwordContainer.style.display = "none";
+
+                if (selectedValue === "dashboard2") {
+                    frame.style.display = "none";
+                    video.style.display = "block";
+                    video.play();
+                } else {
+                    frame.src = urls[selectedValue];
+                    frame.style.display = "block";
+                    video.style.display = "none";
+                }
             }
         }
+
         function validatePassword() {
             var selectedValue = document.getElementById("dashboardSelect").value;
             var enteredPassword = document.getElementById("dashboardPassword").value;
             var frame = document.getElementById("dashboardFrame");
+
             if (enteredPassword === passwords[selectedValue]) {
                 frame.src = urls[selectedValue];
                 frame.style.display = "block";
